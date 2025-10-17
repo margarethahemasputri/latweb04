@@ -216,6 +216,13 @@ html {
   scroll-padding-top: 80px; 
 }
 
+.chart-container {
+  width: 70%;                /* Lebar chart */
+  max-width: 400px;          /* Batas maksimal biar gak terlalu besar */
+  height: 300px;             /* Tinggi chart */
+  margin: 50px auto 0;       /* Tengah */
+  position: relative;
+}
 
 
 

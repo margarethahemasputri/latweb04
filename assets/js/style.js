@@ -53,3 +53,91 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
   });
   
+
+  // Menu active otomatis saat scroll
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(sec => {
+    const sectionTop = sec.offsetTop - 100;
+    if (scrollY >= sectionTop) {
+      current = sec.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
+
+
+// === CHART JS ===
+const ctx = document.getElementById("aboutChart");
+
+if (ctx) {
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["IoT", "System Design", "Automation Control"],
+      datasets: [{
+        label: "Skill Level (%)",
+        data: [90, 85, 80],
+        backgroundColor: [
+          "#c9a45c", // gold
+          "#8c7853", // beige gold
+          "#0a1933"  // dark navy
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: "My Technical Skills and Competencies",
+          align: "center",
+          color: "#001f3f",
+          font: {
+            size: 20,
+            weight: "bold"
+          },
+          padding: {
+            top: 10,
+            bottom: 30   // <--- tambah jarak bawah antara judul dan chart
+          }
+        },
+        legend: { display: false }
+      },
+      
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            stepSize: 10,
+            color: "#001f3f",
+            font: { size: 12 }
+          },
+          grid: {
+            color: "rgba(0,0,0,0.1)"
+          }
+        },
+        x: {
+          ticks: {
+            color: "#001f3f",
+            font: { size: 12 }
+          },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
